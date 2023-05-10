@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbadfb76-6709-40f1-b8fd-de1d56fa7497" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TCSS487ProjectPart1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DerivedFunctions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/InternalFunctions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PartOneTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SHA3.java" afterDir="false" />
+    <list default="true" id="dbadfb76-6709-40f1-b8fd-de1d56fa7497" name="Changes" comment="Initial project. Main is incomplete. Methods use and return Strings.">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DerivedFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DerivedFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InternalFunctions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PartOneTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PartOneTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SHA3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SHA3.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +60,99 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
+  <component name="RunManager" selected="Application.Main-decrypt">
+    <configuration name="Main-decrypt" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="DECRYPT password" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-encrypt" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="ENCRYPT password ./message.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-hash" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="HASH ./message.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-tag" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="TAG password ./message.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartOneTests.encode8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartOneTests" />
+      <option name="METHOD_NAME" value="encode8" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartOneTests.encodeString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartOneTests" />
+      <option name="METHOD_NAME" value="encodeString" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartOneTests.leftEncode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartOneTests" />
+      <option name="METHOD_NAME" value="leftEncode" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartOneTests.rightEncode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartOneTests" />
+      <option name="METHOD_NAME" value="rightEncode" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main-tag" />
+      <item itemvalue="Application.Main-encrypt" />
+      <item itemvalue="Application.Main-decrypt" />
+      <item itemvalue="Application.Main-hash" />
+      <item itemvalue="JUnit.PartOneTests.encode8" />
+      <item itemvalue="JUnit.PartOneTests.encodeString" />
+      <item itemvalue="JUnit.PartOneTests.leftEncode" />
+      <item itemvalue="JUnit.PartOneTests.rightEncode" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main-hash" />
+        <item itemvalue="JUnit.PartOneTests.encodeString" />
+        <item itemvalue="JUnit.PartOneTests.encode8" />
+        <item itemvalue="JUnit.PartOneTests.rightEncode" />
+        <item itemvalue="JUnit.PartOneTests.leftEncode" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -74,8 +163,16 @@
       <updated>1683338714907</updated>
       <workItem from="1683338716349" duration="13969000" />
       <workItem from="1683498570660" duration="29967000" />
-      <workItem from="1683679222875" duration="576000" />
+      <workItem from="1683679222875" duration="26619000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial project. Main is incomplete. Methods use and return Strings.">
+      <created>1683679955131</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683679955131</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +188,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial project. Main is incomplete. Methods use and return Strings." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial project. Main is incomplete. Methods use and return Strings." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
