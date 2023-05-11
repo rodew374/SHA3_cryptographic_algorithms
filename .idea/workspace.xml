@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbadfb76-6709-40f1-b8fd-de1d56fa7497" name="Changes" comment="Changed getBytes() method calls to IF.toByteArray().">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TCSS487ProjectPart1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TCSS487ProjectPart1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DerivedFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DerivedFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PartOneTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PartOneTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SHA3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SHA3.java" afterDir="false" />
-    </list>
+    <list default="true" id="dbadfb76-6709-40f1-b8fd-de1d56fa7497" name="Changes" comment="Changed getBytes() method calls to IF.toByteArray()." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +40,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "byteArrayFormat",
     "last_opened_file_path": "/Users/rodew/IdeaProjects/SHA3_cryptographic_algorithms",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -61,39 +53,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.PartOneTests.truncateByteArray">
-    <configuration name="Main-decrypt" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="TCSS487ProjectPart1" />
-      <option name="PROGRAM_PARAMETERS" value="DECRYPT password" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main-encrypt" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="TCSS487ProjectPart1" />
-      <option name="PROGRAM_PARAMETERS" value="ENCRYPT password ./message.txt" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main-hash" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="TCSS487ProjectPart1" />
-      <option name="PROGRAM_PARAMETERS" value="HASH ./message.txt" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main-tag" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="TCSS487ProjectPart1" />
-      <option name="PROGRAM_PARAMETERS" value="TAG password ./message.txt" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Main-hash">
     <configuration name="PartOneTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TCSS487ProjectPart1" />
       <option name="PACKAGE_NAME" value="" />
