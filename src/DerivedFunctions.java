@@ -17,7 +17,7 @@ public class DerivedFunctions {
      * @param L an integer representing the requested output length in bits.
      * @param N a function-name bit string.
      * @param S a customization bit string. Defines a variant of the function.
-     * @return a byte array with length L/8.
+     * @return a string with length L.
      */
     static byte[] cSHAKE256(byte[] X, int L, byte[] N, byte[] S)
     {
@@ -62,7 +62,7 @@ public class DerivedFunctions {
      * @param X the main input String of any length, including zero.
      * @param L an integer representing the requested output length in bits.
      * @param S a customization bit string. Defines a variant of the function.
-     * @return a byte array with length L / 8.
+     * @return a string with length L.
      */
     static byte[] KMACXOF256(byte[] K, byte[] X, int L, byte[] S)
     {
@@ -86,6 +86,6 @@ public class DerivedFunctions {
         System.arraycopy(prefix, 0, newX, 0, prefix.length);
         System.arraycopy(suffix, 0, newX, prefix.length, suffix.length);
 
-        return cSHAKE256(newX, L, IF.toByteArray("KMAC"), S);
+        return cSHAKE256(newX, L, "KMAC".getBytes(), S);
     }
 }

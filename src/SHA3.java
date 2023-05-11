@@ -41,7 +41,7 @@ class SHA3 {
      * bits in the function state - the capacity.
      * @param N a bit string.
      * @param d the bit length of the output string.
-     * @return a byte array with length d / 8.
+     * @return a string with length d.
      */
     static byte[] KECCAK(byte[] N, int d)
     {
@@ -76,7 +76,7 @@ class SHA3 {
         Z = IF.concatByteArrays(Z, IF.trunc(S, r / 8));
 
         // Step 9 and 10
-        while (d / 8 > Z.length)
+        while (d > Z.length)
         {
             S = KECCAK_p(S);
             Z = IF.concatByteArrays(Z, IF.trunc(S, r / 8));
@@ -147,7 +147,7 @@ class SHA3 {
         for (int y = 0; y < 5; y++) sb.append(plane[y]);
 
         // Step 4: Return the string
-        return IF.toByteArray(sb.toString());
+        return sb.toString().getBytes();
     }
 
     /**
