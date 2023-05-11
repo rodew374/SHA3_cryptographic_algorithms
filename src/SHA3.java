@@ -6,8 +6,6 @@
  * @version 1.2.050722
  */
 
-import java.util.Arrays;
-
 /**
  * The SHA-3 standard: Permutation-based hash and extendable-output functions.
  */
@@ -29,7 +27,7 @@ class SHA3 {
      * @param d the integer representing the output length.
      * @return the hash output string.
      */
-    static byte[] SHAKE256(byte[] M, int d) {   return KECCAK(IF.append4bits(M, (byte) 15), d); }
+    static String SHAKE256(String M, int d) {  return KECCAK(M.concat("1111"), d); }
 
     /**
      * KECCAK Sponge.
@@ -43,46 +41,41 @@ class SHA3 {
      * @param d the bit length of the output string.
      * @return a string with length d.
      */
-    static byte[] KECCAK(byte[] N, int d)
+    static String KECCAK(String N, int d)
     {
-        byte[] P, S, Z;
-        byte[] pad;
+        String P, S, Z;
         int n;
 
         // Step 1
-        pad = IF.pad101(r, N.length);
-        P = new byte[N.length + pad.length];
-        System.arraycopy(N, 0, P, 0, N.length);
-        System.arraycopy(pad, 0, P, N.length, pad.length);
+        P = N.concat(InternalFunctions.pad101(r, N.length()));
 
         // Step 2
-        n = P.length / r;
+        n = P.length() / r;
 
         // Step 3 and 4 are omitted (Unnecessary)
         // Step 5
-        S = new byte[b / 8];
+        S = "0".repeat(b);
 
         // Step 6
         for (int i = 0; i < n; i++)
         {
-            S = KECCAK_p(IF.xorByteArrays(S, IF.concatByteArrays(Arrays.copyOfRange(P, (r / 8) * i,
-                    (r / 8) * (i + 1)), new byte[c / 8])));
+            S = KECCAK_p(InternalFunctions.xorStrings(S, P.substring(r * i, r * (i + 1)).concat("0".repeat(c))));
         }
 
         // Step 7
-        Z = new byte[0];
+        Z = "";
 
         // Step 8
-        Z = IF.concatByteArrays(Z, IF.trunc(S, r / 8));
+        Z = Z.concat(InternalFunctions.trunc(S, r));
 
         // Step 9 and 10
-        while (d > Z.length)
+        while (d > Z.length())
         {
             S = KECCAK_p(S);
-            Z = IF.concatByteArrays(Z, IF.trunc(S, r / 8));
+            Z = Z.concat(InternalFunctions.trunc(S, r));
         }
 
-        return IF.trunc(Z, d / 8);
+        return InternalFunctions.trunc(Z, d);
 
     }
 
@@ -92,7 +85,7 @@ class SHA3 {
      * @param s the string
      * @return the transformed string
      */
-    static byte[] KECCAK_p(byte[] s)
+    static String KECCAK_p(String s)
     {
         boolean[][][] A = new boolean[5][5][w];     // The state array
         StringBuilder sb = new StringBuilder();     // Helps build the required strings
@@ -104,11 +97,11 @@ class SHA3 {
         {
             for (int x = 0; x < 5; x++)
             {
-                for (int z = 0; z < w; z += 8)
+                for (int z = 0; z < w; z++)
                 {
-                    byte B = s[w / 8 * (5 * y + x) + z / 8];
+                    char c = s.charAt(w * (5 * y + x) + z);
 
-                    for (int b = 0; b < 8; b++) A[x][y][z + b] = ((B << b) & 0x80) != 0;
+                    A[x][y][z] = c != '0';
 
                 }
             }
@@ -147,7 +140,7 @@ class SHA3 {
         for (int y = 0; y < 5; y++) sb.append(plane[y]);
 
         // Step 4: Return the string
-        return sb.toString().getBytes();
+        return sb.toString();
     }
 
     /**
@@ -185,8 +178,8 @@ class SHA3 {
         {
             for (int z = 0; z < w; z++)
             {
-                D[x][z] = C[IF.mod(x - 1, 5)][z] ^ C[IF.mod(x + 1,
-                        5)][IF.mod(z - 1, w)];
+                D[x][z] = C[InternalFunctions.mod(x - 1, 5)][z] ^ C[InternalFunctions.mod(x + 1,
+                        5)][InternalFunctions.mod(z - 1, w)];
             }
         }
 
@@ -224,12 +217,12 @@ class SHA3 {
         {
             for (int z = 0; z < w; z++)
             {
-                R[x][y][z] = A[x][y][IF.mod(z - (((t + 1) * (t + 2)) / 2), w)];
+                R[x][y][z] = A[x][y][InternalFunctions.mod(z - (((t + 1) * (t + 2)) / 2), w)];
             }
 
             //noinspection SuspiciousNameCombination
             x = y;
-            y = IF.mod((2 * x) + (3 * y), 5);
+            y = InternalFunctions.mod((2 * x) + (3 * y), 5);
         }
 
         // Step 4
@@ -251,7 +244,7 @@ class SHA3 {
         {
             for (int x = 0; x < 5; x++)
             {
-                System.arraycopy(A[IF.mod(x + (3 * y), 5)][x], 0, R[x][y], 0, w);
+                System.arraycopy(A[InternalFunctions.mod(x + (3 * y), 5)][x], 0, R[x][y], 0, w);
             }
         }
 
@@ -276,8 +269,8 @@ class SHA3 {
             {
                 for (int z = 0; z < w; z++)
                 {
-                    R[x][y][z] = A[x][y][z] ^ ((!A[IF.mod(x + 1, 5)][y][z])
-                            && A[IF.mod(x + 2, 5)][y][z]);
+                    R[x][y][z] = A[x][y][z] ^ ((!A[InternalFunctions.mod(x + 1, 5)][y][z])
+                            && A[InternalFunctions.mod(x + 2, 5)][y][z]);
                 }
             }
         }
@@ -327,7 +320,7 @@ class SHA3 {
      */
     static char rc(int t)
     {
-        int u = IF.mod(t, 255);                  // For-loop upper bounds
+        int u = InternalFunctions.mod(t, 255);                  // For-loop upper bounds
 
         // Step 1
         if (u == 0) return '1';
@@ -345,7 +338,7 @@ class SHA3 {
             R.setCharAt(5, (char) (R.charAt(5) ^ R.charAt(8)));
             R.setCharAt(6, (char) (R.charAt(6) ^ R.charAt(8)));
 
-            R = new StringBuilder(IF.trunc(R.toString(), 8));
+            R = new StringBuilder(InternalFunctions.trunc(R.toString(), 8));
 
         }
 
