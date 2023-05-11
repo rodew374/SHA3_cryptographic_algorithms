@@ -47,7 +47,7 @@ class SHA3 {
         int n;
 
         // Step 1
-        P = N.concat(InternalFunctions.pad101(r, N.length()));
+        P = N.concat(IF.pad101(r, N.length()));
 
         // Step 2
         n = P.length() / r;
@@ -59,23 +59,23 @@ class SHA3 {
         // Step 6
         for (int i = 0; i < n; i++)
         {
-            S = KECCAK_p(InternalFunctions.xorStrings(S, P.substring(r * i, r * (i + 1)).concat("0".repeat(c))));
+            S = KECCAK_p(IF.xorStrings(S, P.substring(r * i, r * (i + 1)).concat("0".repeat(c))));
         }
 
         // Step 7
         Z = "";
 
         // Step 8
-        Z = Z.concat(InternalFunctions.trunc(S, r));
+        Z = Z.concat(IF.trunc(S, r));
 
         // Step 9 and 10
         while (d > Z.length())
         {
             S = KECCAK_p(S);
-            Z = Z.concat(InternalFunctions.trunc(S, r));
+            Z = Z.concat(IF.trunc(S, r));
         }
 
-        return InternalFunctions.trunc(Z, d);
+        return IF.trunc(Z, d);
 
     }
 
@@ -178,8 +178,8 @@ class SHA3 {
         {
             for (int z = 0; z < w; z++)
             {
-                D[x][z] = C[InternalFunctions.mod(x - 1, 5)][z] ^ C[InternalFunctions.mod(x + 1,
-                        5)][InternalFunctions.mod(z - 1, w)];
+                D[x][z] = C[IF.mod(x - 1, 5)][z] ^ C[IF.mod(x + 1,
+                        5)][IF.mod(z - 1, w)];
             }
         }
 
@@ -217,12 +217,12 @@ class SHA3 {
         {
             for (int z = 0; z < w; z++)
             {
-                R[x][y][z] = A[x][y][InternalFunctions.mod(z - (((t + 1) * (t + 2)) / 2), w)];
+                R[x][y][z] = A[x][y][IF.mod(z - (((t + 1) * (t + 2)) / 2), w)];
             }
 
             //noinspection SuspiciousNameCombination
             x = y;
-            y = InternalFunctions.mod((2 * x) + (3 * y), 5);
+            y = IF.mod((2 * x) + (3 * y), 5);
         }
 
         // Step 4
@@ -244,7 +244,7 @@ class SHA3 {
         {
             for (int x = 0; x < 5; x++)
             {
-                System.arraycopy(A[InternalFunctions.mod(x + (3 * y), 5)][x], 0, R[x][y], 0, w);
+                System.arraycopy(A[IF.mod(x + (3 * y), 5)][x], 0, R[x][y], 0, w);
             }
         }
 
@@ -269,8 +269,8 @@ class SHA3 {
             {
                 for (int z = 0; z < w; z++)
                 {
-                    R[x][y][z] = A[x][y][z] ^ ((!A[InternalFunctions.mod(x + 1, 5)][y][z])
-                            && A[InternalFunctions.mod(x + 2, 5)][y][z]);
+                    R[x][y][z] = A[x][y][z] ^ ((!A[IF.mod(x + 1, 5)][y][z])
+                            && A[IF.mod(x + 2, 5)][y][z]);
                 }
             }
         }
@@ -320,7 +320,7 @@ class SHA3 {
      */
     static char rc(int t)
     {
-        int u = InternalFunctions.mod(t, 255);                  // For-loop upper bounds
+        int u = IF.mod(t, 255);                  // For-loop upper bounds
 
         // Step 1
         if (u == 0) return '1';
@@ -338,7 +338,7 @@ class SHA3 {
             R.setCharAt(5, (char) (R.charAt(5) ^ R.charAt(8)));
             R.setCharAt(6, (char) (R.charAt(6) ^ R.charAt(8)));
 
-            R = new StringBuilder(InternalFunctions.trunc(R.toString(), 8));
+            R = new StringBuilder(IF.trunc(R.toString(), 8));
 
         }
 

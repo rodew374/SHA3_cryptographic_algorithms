@@ -6,8 +6,6 @@
  * @version 1.0.050722
  */
 
-import java.util.Objects;
-
 /**
  *
  */
@@ -26,7 +24,7 @@ public class DerivedFunctions {
     {
         if (N.equals("") & S.equals("")) return SHA3.SHAKE256(X, L);
 
-        return SHA3.KECCAK(InternalFunctions.bytepad(InternalFunctions.encode_string(N).concat(InternalFunctions
+        return SHA3.KECCAK(IF.bytepad(IF.encode_string(N).concat(IF
                 .encode_string(S)), 136).concat(X).concat("00"), L);
     }
 
@@ -42,8 +40,8 @@ public class DerivedFunctions {
      */
     static String KMACXOF256(String K, String X, int L, String S)
     {
-        String newX = InternalFunctions.bytepad(InternalFunctions.encode_string(K), 136).concat(X)
-                .concat(InternalFunctions.right_encode(0));
+        String newX = IF.bytepad(IF.encode_string(K), 136).concat(X)
+                .concat(IF.right_encode(0));
 
         return cSHAKE256(newX, L, "KMAC", S);
     }
