@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbadfb76-6709-40f1-b8fd-de1d56fa7497" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Main_hash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Main_hash.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,18 +50,36 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "Errors"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main-hash">
+  <component name="RunManager" selected="Application.Main-encrypt">
+    <configuration name="Main-hash-u" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="HASH -u" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-tag-u" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="TAG password -u" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main-tag" />
+      <item itemvalue="Application.Main-tag-u" />
       <item itemvalue="Application.Main-encrypt" />
       <item itemvalue="Application.Main-decrypt" />
       <item itemvalue="Application.Main-hash" />
+      <item itemvalue="Application.Main-hash-u" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

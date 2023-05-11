@@ -14,9 +14,10 @@ import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.SecureRandom;
+import java.util.Scanner;
 
 /**
- *
+ * Entry point for the application.
  */
 public class Main {
 
@@ -37,11 +38,21 @@ public class Main {
 
     /**
      * Computes a plain cryptographic hash.
-     * @param fileName the file where the message is found.
+     * If txt = "-u", user will be prompted for the message.
+     * Otherewise, txt is the file where the message is found.
+     * @param txt either the file where the message is found or "-u".
      */
-    public static void plainHash(String fileName) throws IOException
+    public static void plainHash(String txt) throws IOException
     {
-        String m = new String(readFile(fileName));
+        String m;
+
+        if (txt.equals("-u"))
+        {
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Enter message: ");
+            m = scan.nextLine();
+        }
+        else m = new String(readFile(txt));
 
         String h = DF.KMACXOF256("", m, 512, "D");
 
@@ -50,12 +61,22 @@ public class Main {
 
     /**
      * Computes an authentication tag.
+     * If txt = "-u", user will be prompted for the message.
+     * Otherewise, txt is the file where the message is found.
      * @param pw the passphrase
-     * @param fileName the file where the message is found.
+     * @param txt either the file where the message is found or "-u".
      */
-    public static void aTag(String pw, String fileName) throws IOException
+    public static void aTag(String pw, String txt) throws IOException
     {
-        String m = new String(readFile(fileName));
+        String m;
+
+        if (txt.equals("-u"))
+        {
+            Scanner scan = new Scanner(System.in);
+            System.out.print("Enter message: ");
+            m = scan.nextLine();
+        }
+        else m = new String(readFile(txt));
 
         String t = DF.KMACXOF256(pw, m, 512, "T");
 
