@@ -44,7 +44,7 @@ public class Main {
     {
         byte[] m = readFile(fileName);
 
-        byte[] h = DerivedFunctions.KMACXOF256(new byte[0], m, 512, "D".getBytes());
+        byte[] h = DerivedFunctions.KMACXOF256(new byte[0], m, 512, IF.toByteArray("D"));
 
         System.out.println("h: " + byteArrayToBinaryString(h));
     }
@@ -58,7 +58,7 @@ public class Main {
     {
         byte[] m = readFile(fileName);
 
-        byte[] t = DerivedFunctions.KMACXOF256(pw.getBytes(), m, 512, "T".getBytes());
+        byte[] t = DerivedFunctions.KMACXOF256(IF.toByteArray(pw), m, 512, IF.toByteArray("T"));
 
         System.out.println("t: " + byteArrayToBinaryString(t));
     }
@@ -78,13 +78,13 @@ public class Main {
         byte[] m = readFile(fileName);
 
         z = random(512);
-        keka = DerivedFunctions.KMACXOF256(z.concat(pw).getBytes(), new byte[0], 1024, "S".getBytes());
+        keka = DerivedFunctions.KMACXOF256(IF.toByteArray(z.concat(pw)), new byte[0], 1024, IF.toByteArray("S"));
         ke = Arrays.copyOfRange(keka, 0, keka.length / 2);
         ka = Arrays.copyOfRange(keka, keka.length / 2, keka.length);
-        c = IF.xorByteArrays(DerivedFunctions.KMACXOF256(ke, new byte[0], m.length, "SKE".getBytes()), m);
-        t = DerivedFunctions.KMACXOF256(ka, m, 512, "SKA".getBytes());
+        c = IF.xorByteArrays(DerivedFunctions.KMACXOF256(ke, new byte[0], m.length, IF.toByteArray("SKE")), m);
+        t = DerivedFunctions.KMACXOF256(ka, m, 512, IF.toByteArray("SKA"));
 
-        writeFile(z.getBytes(), c, t);
+        writeFile(IF.toByteArray(z), c, t);
 
         System.out.println("File encrypted: cryptogram.txt");
     }
@@ -102,14 +102,14 @@ public class Main {
 
         zct = content.split("\n");
         z = zct[0];
-        c = zct[1].getBytes();
-        t = zct[2].getBytes();
+        c = IF.toByteArray(zct[1]);
+        t = IF.toByteArray(zct[2]);
 
-        keka = DerivedFunctions.KMACXOF256(z.concat(pw).getBytes(), new byte[0], 1024, "S".getBytes());
+        keka = DerivedFunctions.KMACXOF256(IF.toByteArray(z.concat(pw)), new byte[0], 1024, IF.toByteArray("S"));
         ke = Arrays.copyOfRange(keka, 0, keka.length / 2);
         ka = Arrays.copyOfRange(keka, keka.length / 2, keka.length);
-        m = IF.xorByteArrays(DerivedFunctions.KMACXOF256(ke, new byte[0], c.length, "SKE".getBytes()), c);
-        tprime = DerivedFunctions.KMACXOF256(ka, m, 512, "SKA".getBytes());
+        m = IF.xorByteArrays(DerivedFunctions.KMACXOF256(ke, new byte[0], c.length, IF.toByteArray("SKE")), c);
+        tprime = DerivedFunctions.KMACXOF256(ka, m, 512, IF.toByteArray("SKA"));
 
         try {   Files.write(Paths.get("./originalMessage.txt"), m);    }
 
