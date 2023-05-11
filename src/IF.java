@@ -9,7 +9,7 @@
 /**
  * Internal functions.
  */
-class InternalFunctions
+class IF
 {
 
     /**
