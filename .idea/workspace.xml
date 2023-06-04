@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbadfb76-6709-40f1-b8fd-de1d56fa7497" name="Changes" comment="">
+    <list default="true" id="dbadfb76-6709-40f1-b8fd-de1d56fa7497" name="Changes" comment="Functions well, but will not work with the Unicode right single quotation mark character, ’.">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PartTwoTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Main_decryt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Main_decryt.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCSS487ProjectPart1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TCSS487ProjectPart1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PartOneTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PartOneTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +32,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-18.0.2/lib/src.zip!/java.base/java/math/BigInteger.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -34,6 +46,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -43,24 +56,178 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/rodew/Downloads/bcprov-jdk18on-173.jar",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/rodew/OneDrive/College/UW/Cryptography - TCSS 487/InmanProjectPart1/SHA3.java",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "Errors"
+    "rearrange.code.on.save": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "two.files.diff.last.used.file": "C:/Users/rodew/OneDrive/College/UW/Cryptography - TCSS 487/InmanProjectPart1/SHA3.java",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main-hash">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main-verify">
+    <configuration name="Main-ec-decrypt" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="ECDECRYPT password ./ec-cryptogram.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-ec-encrypt-u" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="ECENCRYPT ./public.key -u" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-ec-encrypt" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="ECENCRYPT ./public.key ./message.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-hash-u" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="HASH -u" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-key" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="KEY newpassword" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-sign-u" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="SIGN password -u" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-sign" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="SIGN password ./message.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-tag-u" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="TAG password -u" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main-verify" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TCSS487ProjectPart1" />
+      <option name="PROGRAM_PARAMETERS" value="VERIFY ./public.key ./message.txt ./signature.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartOneTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartOneTests" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartTwoTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartTwoTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartTwoTests.associativity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartTwoTests" />
+      <option name="METHOD_NAME" value="associativity" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartTwoTests.distributivity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartTwoTests" />
+      <option name="METHOD_NAME" value="distributivity" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PartTwoTests.distributivity2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TCSS487ProjectPart1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PartTwoTests" />
+      <option name="METHOD_NAME" value="distributivity2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main-tag" />
+      <item itemvalue="Application.Main-verify" />
+      <item itemvalue="Application.Main-key" />
+      <item itemvalue="Application.Main-tag-u" />
       <item itemvalue="Application.Main-encrypt" />
+      <item itemvalue="Application.Main-ec-decrypt" />
+      <item itemvalue="Application.Main-sign" />
+      <item itemvalue="Application.Main-sign-u" />
+      <item itemvalue="Application.Main-ec-encrypt" />
+      <item itemvalue="Application.Main-ec-encrypt-u" />
       <item itemvalue="Application.Main-decrypt" />
       <item itemvalue="Application.Main-hash" />
+      <item itemvalue="Application.Main-hash-u" />
+      <item itemvalue="JUnit.PartOneTests" />
+      <item itemvalue="JUnit.PartTwoTests" />
+      <item itemvalue="JUnit.PartTwoTests.associativity" />
+      <item itemvalue="JUnit.PartTwoTests.distributivity" />
+      <item itemvalue="JUnit.PartTwoTests.distributivity2" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PartOneTests" />
+        <item itemvalue="JUnit.PartTwoTests.associativity" />
+        <item itemvalue="JUnit.PartTwoTests" />
+        <item itemvalue="JUnit.PartTwoTests.distributivity2" />
+        <item itemvalue="JUnit.PartTwoTests.distributivity" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -73,7 +240,20 @@
       <workItem from="1683338716349" duration="13969000" />
       <workItem from="1683498570660" duration="29967000" />
       <workItem from="1683679222875" duration="576000" />
+      <workItem from="1685659805832" duration="12564000" />
+      <workItem from="1685681728752" duration="2309000" />
+      <workItem from="1685684070978" duration="113000" />
+      <workItem from="1685743346998" duration="21569000" />
+      <workItem from="1685827973324" duration="12060000" />
     </task>
+    <task id="LOCAL-00001" summary="Functions well, but will not work with the Unicode right single quotation mark character, ’.">
+      <created>1683786351295</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683786351295</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,6 +269,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Functions well, but will not work with the Unicode right single quotation mark character, ’." />
+    <option name="LAST_COMMIT_MESSAGE" value="Functions well, but will not work with the Unicode right single quotation mark character, ’." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

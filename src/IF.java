@@ -3,8 +3,10 @@
  * CreatedOn: April 28, 2023
  *
  * @author ZacInman
- * @version 1.2.050522
+ * @version 2.0.060123
  */
+
+import java.math.BigInteger;
 
 /**
  * Internal functions.
@@ -36,6 +38,15 @@ class IF
     }
 
     /**
+     * Encodes a bit string. The output is the left_encode of the
+     * length of the string parsed with the string itself.
+     * If the string is not byte-oriented, the result will not be either.
+     * @param s the string to be encoded.
+     * @return the encoded string.
+     */
+    static String encode_string(String s) { return left_encode(s.length()).concat(s);   }
+
+    /**
      * Converts an integer into a binary string.
      * The length of the string is a multiple of 8.
      * @param n the integer to be converted.
@@ -53,15 +64,6 @@ class IF
 
         return bin;
     }
-
-    /**
-     * Encodes a bit string. The output is the left_encode of the
-     * length of the string parsed with the string itself.
-     * If the string is not byte-oriented, the result will not be either.
-     * @param s the string to be encoded.
-     * @return the encoded string.
-     */
-    static String encode_string(String s) { return left_encode(s.length()).concat(s);   }
 
     /**
      * Encodes an integer as a byte string, starting with the number of bytes required
@@ -118,13 +120,6 @@ class IF
     }
 
     /**
-     * Reverse the direction of a string.
-     * @param s the string to be reversed.
-     * @return the reversed string.
-     */
-    private static String reverse(String s) { return new StringBuilder(s).reverse().toString(); }
-
-    /**
      * Encodes an integer as a byte string, starting with the binary number and ending
      * with the number of bytes required to represent the binary number. The number of
      * bytes required as well as the binary number are both reversed before being parsed.
@@ -143,6 +138,30 @@ class IF
         len = reverse(len);
 
         return bin.concat(len);
+    }
+
+
+    /**
+     * Computes a square root of v mod p with a specified least significant
+     * bit, if such root exists.
+     *
+     * @param v the radicand
+     * @param p the modulus, must satisfy p mod 4 = 3
+     * @param lsb desired least significant bit: true == 1, false == 0
+     * @return a square root r of v mod p with desired lsb if such a root
+     *          exists, otherwise null.
+     */
+    static BigInteger sqrt(BigInteger v, BigInteger p, boolean lsb)
+    {
+        assert (p.testBit(0) && p.testBit(1));          // p = 3 mod 4
+
+        if (v.signum() == 0) return BigInteger.ZERO;
+
+        BigInteger r = v.modPow(p.shiftRight(2).add(BigInteger.ONE), p);
+
+        if (r.testBit(0) != lsb)    r = p.subtract(r);    // lsb correction
+
+        return (r.multiply(r).subtract(v).mod(p).signum() == 0) ? r : null;
     }
 
     /**
@@ -177,4 +196,11 @@ class IF
 
         return new String(xor);
     }
+
+    /**
+     * Reverse the direction of a string.
+     * @param s the string to be reversed.
+     * @return the reversed string.
+     */
+    private static String reverse(String s) { return new StringBuilder(s).reverse().toString(); }
 }

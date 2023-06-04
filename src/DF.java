@@ -3,11 +3,11 @@
  * CreatedOn: May 07, 2023
  *
  * @author ZacInman
- * @version 1.0.050722
+ * @version 1.0.050723
  */
 
 /**
- *
+ * Functions derived from the SHA-3 Standard.
  */
 public class DF {
 
