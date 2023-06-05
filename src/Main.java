@@ -17,6 +17,29 @@ import java.util.Scanner;
 public class Main {
 
     /**
+     * Entry point for the application.
+     */
+    public static void main(String[] args) throws IOException
+    {
+        String op;              // The operation to perform
+
+        op = args[0];
+
+        switch (op) {
+            case "HASH" -> plainHash(args[1]);
+            case "TAG" -> aTag(args[1], args[2]);
+            case "ENCRYPT" -> encrypt(args[1], args[2]);
+            case "DECRYPT" -> decrypt(args[1]);
+            case "KEY" -> keyPair(args[1]);
+            case "ECENCRYPT" -> ec_encrypt(args[1], args[2]);
+            case "ECDECRYPT" -> ec_decrypt(args[1], args[2]);
+            case "SIGN" -> sign(args[1], args[2]);
+            case "VERIFY" -> verify(args[1], args[2], args[3]);
+            default -> System.out.println("Unknown command.");
+        }
+    }
+
+    /**
      * Computes an authentication tag.
      * If txt = "-u", user will be prompted for the message.
      * Otherewise, txt is the file where the message is found.
@@ -112,26 +135,27 @@ public class Main {
     }
 
     /**
-     * Entry point for the application.
+     * Helper method to encrypt the elliptic private key.
+     *
+     * @param pw the passphrase the key is encrypted under.
+     * @param key the private key to be encrypted.
+     * @return the cryptogram (z, c, t)
      */
-    public static void main(String[] args) throws IOException
+    public static String encryptKey(String pw, BigInteger key)
     {
-        String op;              // The operation to perform
+        String z;               // Random binary string
+        String keka, ke, ka;
+        String t;
+        String c;
 
-        op = args[0];
+        z = random(512);
+        keka = DF.KMACXOF256(z.concat(pw), "", 1024, "S");
+        ke = keka.substring(0, keka.length() / 2);
+        ka = keka.substring(keka.length() / 2);
+        c = IF.xorStrings(DF.KMACXOF256(ke, "", key.bitLength(), "SKE"), key.toString(2));
+        t = DF.KMACXOF256(ka, key.toString(2), 512, "SKA");
 
-        switch (op) {
-            case "HASH" -> plainHash(args[1]);
-            case "TAG" -> aTag(args[1], args[2]);
-            case "ENCRYPT" -> encrypt(args[1], args[2]);
-            case "DECRYPT" -> decrypt(args[1]);
-            case "KEY" -> keyPair(args[1]);
-            case "ECENCRYPT" -> ec_encrypt(args[1], args[2]);
-            case "ECDECRYPT" -> ec_decrypt(args[1], args[2]);
-            case "SIGN" -> sign(args[1], args[2]);
-            case "VERIFY" -> verify(args[1], args[2], args[3]);
-            default -> System.out.println("Unknown command.");
-        }
+        return z + "\n" + c + "\n" + t;
     }
 
     /**
@@ -152,16 +176,16 @@ public class Main {
 
         content = new String(readFile(fileName)).split("\n");
 
-        Z = new EC.Point(new BigInteger(content[0]), new BigInteger(content[1]));
+        Z = new EC.Point(new BigInteger(content[0], 2), new BigInteger(content[1], 2));
         c = content[2];
         t = content[3];
 
-        s = new BigInteger(DF.KMACXOF256(pw, "", 512, "SK"));
+        s = new BigInteger(DF.KMACXOF256(pw, "", 512, "SK"), 2);
         s = new BigInteger("4").multiply(s);
 
         W = Z.mult(s);
 
-        keka = DF.KMACXOF256(String.valueOf(W.x), "", 1024, "PK");
+        keka = DF.KMACXOF256(W.x.toString(2), "", 1024, "PK");
         ke = keka.substring(0, keka.length() / 2);
         ka = keka.substring(keka.length() / 2);
 
@@ -207,27 +231,27 @@ public class Main {
 
         try{
             Scanner scan = new Scanner(new File(keyFile));
-            V = new EC.Point(new BigInteger(scan.nextLine()), new BigInteger(scan.nextLine()));
+            V = new EC.Point(new BigInteger(scan.nextLine(), 2), new BigInteger(scan.nextLine(), 2));
         } catch (FileNotFoundException e)
         {
             System.out.println("Public key file not found.");
             System.exit(0);
         }
 
-        k = new BigInteger(random(512));
+        k = new BigInteger(random(512), 2);
         k = new BigInteger("4").multiply(k);
 
         W = V.mult(k);
         Z = EC.G.mult(k);
 
-        keka = DF.KMACXOF256(String.valueOf(W.x), "", 1024, "PK");
+        keka = DF.KMACXOF256(W.x.toString(2), "", 1024, "PK");
         ke = keka.substring(0, keka.length() / 2);
         ka = keka.substring(keka.length() / 2);
 
         c = IF.xorStrings(DF.KMACXOF256(ke, "", m.length(), "PKE"), m);
         t = DF.KMACXOF256(ka, m, 512, "PKA");
 
-        writeFile("./ec-cryptogram.txt", Z.x + "\n" + Z.y + "\n" + c + "\n" + t);
+        writeFile("./ec-cryptogram.txt", Z.x.toString(2) + "\n" + Z.y.toString(2) + "\n" + c + "\n" + t);
 
         System.out.println("Message encrypted: ec-cryptogram.txt");
     }
@@ -243,16 +267,16 @@ public class Main {
         BigInteger s;           // Private Key
         EC.Point V;             // Public Key
 
-        s = new BigInteger(DF.KMACXOF256(pw, "", 512, "SK"));
+        s = new BigInteger(DF.KMACXOF256(pw, "", 512, "SK"), 2);
         s = new BigInteger("4").multiply(s);
 
         V = EC.G.mult(s);
 
-        writeFile("./public.key", V.x + "\n" + V.y);
+        writeFile("./public.key", V.x.toString(2) + "\n" + V.y.toString(2));
         System.out.println("Public key generated: public.key");
 
-        writeFile("./private.key", String.valueOf(s));
-        System.out.println("Private key generated: private.key");
+        writeFile("./private.key", encryptKey(pw, s));
+        System.out.println("Private key encrypted: private.key");
     }
 
     /**
@@ -302,18 +326,18 @@ public class Main {
         }
         else m = new String(readFile(txt));
 
-        s = new BigInteger(DF.KMACXOF256(pw, "", 512, "SK"));
+        s = new BigInteger(DF.KMACXOF256(pw, "", 512, "SK"), 2);
         s = new BigInteger("4").multiply(s);
 
-        k = new BigInteger(DF.KMACXOF256(String.valueOf(s), m, 512, "N"));
+        k = new BigInteger(DF.KMACXOF256(s.toString(2), m, 512, "N"), 2);
         k = new BigInteger("4").multiply(k);
 
         U = EC.G.mult(k);
 
-        h = DF.KMACXOF256(String.valueOf(U.x), m, 512, "T");
+        h = DF.KMACXOF256(U.x.toString(2), m, 512, "T");
         z = k.subtract(new BigInteger(h).multiply(s)).mod(EC.r);
 
-        writeFile("./signature.txt", h+ "\n" + z);
+        writeFile("./signature.txt", h + "\n" + z.toString(2));
 
         System.out.println("Message signed: signature.txt");
     }
@@ -337,12 +361,12 @@ public class Main {
 
         sigContent = new String(readFile(signature)).split("\n");
         h = sigContent[0];
-        z = new BigInteger(sigContent[1]);
+        z = new BigInteger(sigContent[1], 2);
 
         keyContent = new String(readFile(keyFile)).split("\n");
-        V = new EC.Point(new BigInteger(keyContent[0]), new BigInteger(keyContent[1]));
+        V = new EC.Point(new BigInteger(keyContent[0], 2), new BigInteger(keyContent[1], 2));
 
-        U = EC.G.mult(z).add(V.mult(new BigInteger(h)));
+        U = EC.G.mult(z).add(V.mult(new BigInteger(h, 2)));
 
         hprime = DF.KMACXOF256(String.valueOf(U.x), m, 512, "T");
 
